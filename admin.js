@@ -123,7 +123,9 @@ window.onload = function () {
                   <div> ${file.name}</div>
                   <div class="btnWrapper">
                     <div class="upload-btn" >
-                        <a class="btn btnSave-${index}">Save</a>
+                        <a class="btn btnSave btnSave-${index} ">
+                          <span class="btnSave--loading">Save</span>
+                        </a>
                     </div>
                     <button class="btnRemove" onclick="deleteFile(${file.size})">
                         <img class="delete-icon" src="wastebasket.svg" alt="Удалить файл" width="25">
@@ -170,6 +172,8 @@ window.onload = function () {
                 JSON.stringify(unique, null, 2);
               fileSave.href = myData;
               fileSave.download = `${fileName}_modified.json`;
+              fileSave.firstElementChild.classList.remove('btnSave--loading')
+              
             };
           } else {
             console.log("Your browser doesn't support web workers.");
@@ -185,6 +189,7 @@ window.onload = function () {
               JSON.stringify(unique, null, 2);
             fileSave.href = myData;
             fileSave.download = `${fileName}_modified.json`;
+            fileSave.firstElementChild.classList.remove('btnSave--loading')
           }
         } catch (error) {
           alert(
